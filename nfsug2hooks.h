@@ -91,4 +91,21 @@ namespace NyaHooks {
 			NyaHookLib::Patch(0x5D25A5, &HookedFunction);
 		}
 	}
+
+	namespace WorldTimestepHook {
+		std::vector<void(*)(float)> aFunctions;
+
+		auto OrigFunction = (void(__thiscall*)(World*, float))nullptr;
+		void __thiscall HookedFunction(World* a1, float a2) {
+			for (auto& func : aFunctions) {
+				func(a2);
+			}
+			return OrigFunction(a1, a2);
+		}
+
+		void Init() {
+			if (OrigFunction) return;
+			OrigFunction = (void(__thiscall*)(World*, float))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x581407, &HookedFunction);
+		}
+	}
 }
