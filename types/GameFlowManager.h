@@ -25,5 +25,6 @@ public:
 
 	static inline auto UnloadFrontend = (void(__thiscall*)(GameFlowManager*))0x578320;
 	static inline auto LoadTrack = (void(__thiscall*)(GameFlowManager*))0x581020;
+	static inline auto UnloadTrack = (void(__thiscall*)(GameFlowManager*))0x5819C0;
 };
-auto& TheGameFlowManager = *(GameFlowManager*)0x865480;
+auto& TheGameFlowManager = *(GameFlowManager*)0x865484;

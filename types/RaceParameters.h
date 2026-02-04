@@ -47,7 +47,26 @@ public:
 	int PackedTime;
 };
 
-class DriverInfo;
+enum DriverTypeEnum {
+	DRIVER_TYPE_NONE,
+	DRIVER_TYPE_PLAYER,
+	DRIVER_TYPE_AI_RACER,
+	DRIVER_TYPE_TRAFFIC_CAR,
+	DRIVER_TYPE_COP,
+	DRIVER_TYPE_SUPER_COP,
+	DRIVER_TYPE_DUNNO,
+};
+
+class DriverInfo {
+public:
+	uint8_t _0[0x4];
+	DriverTypeEnum nDriverType; // +4
+	uint8_t _8[0x904];
+	char sPlayerName[16]; // +90C
+	uint8_t _91C[0x24];
+};
+static_assert(sizeof(DriverInfo) == 0x940);
+
 class RaceParameters {
 public:
 	int TrackNumber; // +0

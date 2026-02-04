@@ -35,3 +35,6 @@ public:
 };
 static_assert(sizeof(TrackInfo) == 0x128);
 static_assert(offsetof(TrackInfo, Point2Point) == 0x85);
+
+auto CalcTrackNameHash = (uint32_t(*)(int, bool reverse))0x516280;
+auto GetLocalizedString = (const char*(*)(uint32_t))0x4FFA80;
