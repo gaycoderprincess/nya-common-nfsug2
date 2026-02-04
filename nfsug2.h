@@ -7,14 +7,16 @@
 #include "types/TrackInfo.h"
 #include "types/CarTypeInfo.h"
 #include "types/GameSettings.h"
+#include "types/CarPartDatabase.h"
 #include "types/PresetCar.h"
 #include "types/GameFlowManager.h"
 #include "types/RideInfo.h"
 #include "types/Car.h"
-#include "types/CarPartDatabase.h"
 #include "types/CAnimManager.h"
 #include "types/cFrontendDatabase.h"
 #include "types/Player.h"
+#include "types/DriftManager.h"
+#include "types/GarageMainScreen.h"
 #include "types/SkipFE.h"
 
 class Race {
@@ -30,18 +32,6 @@ public:
 	static inline auto TheRaceHasFinished = (void(__thiscall*)(RaceCoordinator*))0x60AAA0;
 };
 auto& pRaceCoordinator = *(RaceCoordinator**)0x8900D8;
-
-enum eSetRideInfoReasons {
-	SET_RIDE_INFO_REASON_VINYL = 0,
-	SET_RIDE_INFO_REASON_LOAD_CAR = 1,
-	SET_RIDE_INFO_REASON_CATCHALL = 2,
-};
-
-class GarageMainScreen {
-public:
-	static inline auto SetRideInfo = (void(__thiscall*)(GarageMainScreen*, RideInfo*, eSetRideInfoReasons))0x4D8C70;
-};
-auto& TopOrFullScreenRide = *(RideInfo*)0x8371B0;
 
 auto& UnlockAllThings = *(bool*)0x838464;
 auto& ForceAllAICarsToBeThisType = *(int*)0x7FAA78;

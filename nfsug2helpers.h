@@ -8,8 +8,7 @@ namespace NyaHelpers {
 		car.PhysicsLevel = 3; // todo
 
 		for (int i = 0; i < CARSLOTID_NUM; i++) {
-			auto part = CarPartDB.GetCarPartByIndex(record->PresetCar.InstalledPartIndices[i]);
-			car.PartNameHashes[i] = part ? part->GetPartNameHash() : 0;
+			car.PartNameHashes[i] = record->PresetCar.InstalledParts[i];
 		}
 		return car;
 	}

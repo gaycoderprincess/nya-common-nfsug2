@@ -59,7 +59,9 @@ enum DriverTypeEnum {
 
 class DriverInfo {
 public:
-	uint8_t _0[0x4];
+	uint8_t _0[0x1];
+	uint8_t DriverNumber; // +1 traffic uses 50+, ai uses 100+, local player uses 1
+	uint8_t _2[0x2];
 	DriverTypeEnum nDriverType; // +4
 	uint8_t _8[0x904];
 	char sPlayerName[16]; // +90C

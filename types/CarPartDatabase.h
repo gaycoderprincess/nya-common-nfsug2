@@ -97,25 +97,45 @@ public:
 };
 static_assert(sizeof(CarPart) == 0xE);
 
-class CarPartDatabase {
+class CarPartAttributeTable;
+class CarPartAttribute;
+class CarPartModelTable;
+class CarPartPack : public bTNode<CarPartPack> {
 public:
+	unsigned int Version;
+	const char* StringTable;
+	unsigned int StringTableSize;
+	CarPartAttributeTable* AttributeTableTable;
+	unsigned int NumAttributeTables;
+	CarPartAttribute* AttributesTable;
+	unsigned int NumAttributes;
+	unsigned int* TypeNameTable;
+	unsigned int NumTypeNames;
+	CarPartModelTable* ModelTable;
+	unsigned int NumModelTables;
+	CarPart* PartsTable;
+	unsigned int NumParts;
+};
+static_assert(sizeof(CarPartPack) == 0x3C);
+static_assert(offsetof(CarPartPack, PartsTable) == 0x34);
+static_assert(offsetof(CarPartPack, NumParts) == 0x38);
+
+class CarPartDatabase : public bTList<CarPartDatabase> {
+public:
+	bTList<CarPartPack> CarPartPackList;
 
 	// inlined
-	CarPart* GetCarPartByIndex(int a2) {
-		uintptr_t v2;
-		uintptr_t v3;
-
-		if (a2 < 0) return nullptr;
-		v2 = *(uintptr_t*)this;
-		if (*(CarPartDatabase**)this == this) return nullptr;
-		while (true) {
-			v3 = *(uintptr_t*)(v2 + 0x38);
-			if (a2 < v3) break;
-			v2 = *(uintptr_t*)v2;
-			a2 -= v3;
-			if ((CarPartDatabase*)v2 == this) return nullptr;
+	CarPart* GetCarPartByIndex(int index) {
+		if (index < 0) return nullptr;
+		auto node = CarPartPackList.HeadNode.Next;
+		while (node != &CarPartPackList.HeadNode) {
+			if (node->NumParts < index) {
+				return &node->PartsTable[index];
+			}
+			index -= node->NumParts;
+			node = node->Next;
 		}
-		return (CarPart*)(*(uintptr_t*)(v2 + 0x34) + 0xE * a2);
+		return nullptr;
 	}
 };
 auto& CarPartDB = *(CarPartDatabase*)0x8A2B68;

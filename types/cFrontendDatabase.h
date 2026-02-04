@@ -23,7 +23,7 @@ class PresetCarSlot {
 public:
 	uint8_t _0[0x8];
 	uint32_t CarTypeHash; // +8
-	uint32_t InstalledPartIndices[170]; // +C
+	uint32_t InstalledParts[CARSLOTID_NUM]; // +C
 	uint8_t _2B4[0x94]; // performance data
 };
 static_assert(offsetof(PresetCarSlot, CarTypeHash) == 0x8);

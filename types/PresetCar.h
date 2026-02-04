@@ -3,7 +3,7 @@ public:
 	char CarTypeName[32];
 	char PresetName[32];
 	int PhysicsLevel; // +48
-	uint32_t PartNameHashes[170]; // +4C
+	uint32_t PartNameHashes[CARSLOTID_NUM]; // +4C
 	uint8_t PerformanceParts[68]; // +2F4
 };
 static_assert(sizeof(PresetCar) == 0x338);

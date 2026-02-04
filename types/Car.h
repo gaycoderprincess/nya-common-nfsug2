@@ -58,10 +58,9 @@ public:
 };
 static_assert(offsetof(CarMover, sName) == 0xC);
 
-class Car {
+class Car : public bNode<Car> {
 public:
-	Car* pNext; // +0
-	uint8_t _4[0x8];
+	uint8_t _8[0x4];
 	const char* sCarTypeName; // +C
 	RideInfo* pRideInfo; // +10
 	DriverInfo* pDriverInfo; // +14
@@ -99,8 +98,7 @@ auto GetCarByDriverNumber = (Car*(*)(int))0x5F0ED0;
 
 class World {
 public:
-	Car* pCarTable; // +0
-	int nNumCars; // +4
+	bTList<Car> CarTable; // +0
 
 	static inline auto IsWorldPaused = (bool(__thiscall*)(World*))0x5EA320;
 };
