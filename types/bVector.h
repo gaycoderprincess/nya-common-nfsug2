@@ -11,6 +11,7 @@ typedef NyaMat4x4 bMatrix4;
 #else
 class bVector3 {
 	float x, y, z;
+	float pad;
 };
 
 class bVector4 {
@@ -18,13 +19,9 @@ class bVector4 {
 };
 
 class bMatrix4 {
-	bVector3 x;
-	float xw;
-	bVector3 y;
-	float yw;
-	bVector3 z;
-	float zw;
-	bVector3 p;
-	float pw;
+	bVector4 x;
+	bVector4 y;
+	bVector4 z;
+	bVector4 p;
 };
 #endif

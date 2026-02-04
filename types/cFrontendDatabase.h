@@ -35,17 +35,15 @@ public:
 };
 static_assert(sizeof(FECarConfig) == 0x434);
 
-class FECareerCar : public FECarRecord {
+class FECareerCar : public FECarConfig {
 public:
-	PresetCarSlot PresetCar; // +18
-	uint8_t _360[0x498];
+	uint8_t _434[0x3C4];
 };
 static_assert(sizeof(FECareerCar) == 0x7F8);
 
-class FEOnlineCareerCar : public FECarRecord {
+class FEOnlineCareerCar : public FECarConfig {
 public:
-	PresetCarSlot PresetCar; // +18
-	uint8_t _360[0xD8];
+	uint8_t _434[0x4];
 };
 static_assert(sizeof(FEOnlineCareerCar) == 0x438);
 

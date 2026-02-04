@@ -31,6 +31,18 @@ public:
 };
 auto& pRaceCoordinator = *(RaceCoordinator**)0x8900D8;
 
+enum eSetRideInfoReasons {
+	SET_RIDE_INFO_REASON_VINYL = 0,
+	SET_RIDE_INFO_REASON_LOAD_CAR = 1,
+	SET_RIDE_INFO_REASON_CATCHALL = 2,
+};
+
+class GarageMainScreen {
+public:
+	static inline auto SetRideInfo = (void(__thiscall*)(GarageMainScreen*, RideInfo*, eSetRideInfoReasons))0x4D8C70;
+};
+auto& TopOrFullScreenRide = *(RideInfo*)0x8371B0;
+
 auto& UnlockAllThings = *(bool*)0x838464;
 auto& ForceAllAICarsToBeThisType = *(int*)0x7FAA78;
 auto& EvaluatingDrivingLines = *(bool*)0x8650B0;
@@ -47,6 +59,7 @@ auto& GameD3DDevice = *(IDirect3DDevice9**)0x870974;
 
 auto bInitTicker = (void(*)())0x43BD90;
 auto FEngIsPackagePushed = (bool(*)(const char*))0x52CF60;
+auto FEngFindScreen = (void*(*)(const char*))0x51BD10;
 
 auto bStringHash = (uint32_t(*)(const char*))0x43DB50;
 auto FEHashUpper = (uint32_t(*)(const char*))0x505450;
