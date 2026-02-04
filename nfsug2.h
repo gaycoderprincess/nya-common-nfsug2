@@ -15,6 +15,9 @@
 
 class cFrontendDatabase {
 public:
+	uint8_t _0[0x10];
+	char sPlayerName[16]; // +10
+
 	static inline auto NotifyExitRaceToFrontend = (void(__thiscall*)(cFrontendDatabase*, bool))0x503040;
 };
 auto& FEDatabase = *(cFrontendDatabase*)0x83A9D0;
@@ -56,11 +59,13 @@ auto& EvaluatingDrivingLines = *(bool*)0x8650B0;
 auto& OnlineEnabled = *(bool*)0x865084;
 auto& MovieIsStarted = *(bool*)0x8383AC;
 auto& WorldTimeElapsed = *(float*)0x865154;
+auto& g_tweakIsDragRace = *(bool*)0x890108;
 
 auto& GameWindow = *(HWND*)0x870990;
 auto& GameD3D = *(IDirect3D9**)0x870970;
 auto& GameD3DDevice = *(IDirect3DDevice9**)0x870974;
 
+auto bInitTicker = (void(*)())0x43BD90;
 auto FEngIsPackagePushed = (bool(*)(const char*))0x52CF60;
 
 auto bStringHash = (uint32_t(*)(const char*))0x43DB50;

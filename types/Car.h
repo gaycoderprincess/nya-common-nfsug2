@@ -82,6 +82,7 @@ public:
 	static inline auto IsBlinkingInView = (bool(__thiscall*)(Car*))0x5EBFF0;
 	static inline auto SetMovementMode = (void(__thiscall*)(Car*, MovementMode))0x5F46A0;
 	static inline auto SetControlMode = (void(__thiscall*)(Car*, ControlMode))0x5EBA30;
+	static inline auto IsEngineBlown = (bool(__thiscall*)(Car*))0x5ECE00;
 
 	// inlined
 	void StopBlinking() {
