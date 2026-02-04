@@ -61,6 +61,8 @@ auto& MovieIsStarted = *(bool*)0x8383AC;
 auto& WorldTimeElapsed = *(float*)0x865154;
 auto& g_tweakIsDragRace = *(bool*)0x890108;
 
+auto LZDecompress = (uint32_t(*)(uint8_t* pSrc, uint8_t* pDst))0x574670;
+
 auto& GameWindow = *(HWND*)0x870990;
 auto& GameD3D = *(IDirect3D9**)0x870970;
 auto& GameD3DDevice = *(IDirect3DDevice9**)0x870974;
