@@ -11,24 +11,11 @@
 #include "types/GameFlowManager.h"
 #include "types/RideInfo.h"
 #include "types/Car.h"
+#include "types/CarPartDatabase.h"
+#include "types/CAnimManager.h"
+#include "types/cFrontendDatabase.h"
+#include "types/Player.h"
 #include "types/SkipFE.h"
-
-class cFrontendDatabase {
-public:
-	uint8_t _0[0x10];
-	char sPlayerName[16]; // +10
-
-	static inline auto NotifyExitRaceToFrontend = (void(__thiscall*)(cFrontendDatabase*, bool))0x503040;
-};
-auto& FEDatabase = *(cFrontendDatabase*)0x83A9D0;
-
-class CAnimManager {
-public:
-	static inline auto IsPlayingIntroNIS = (bool(__thiscall*)(CAnimManager*))0x430350;
-	static inline auto IsPlayingEndNIS = (bool(__thiscall*)(CAnimManager*))0x430420;
-	static inline auto EndNIS_SafeRemove = (void(__thiscall*)(CAnimManager*))0x43B640;
-};
-auto& TheAnimManager = *(CAnimManager*)0x827E88;
 
 class Race {
 public:
@@ -43,15 +30,6 @@ public:
 	static inline auto TheRaceHasFinished = (void(__thiscall*)(RaceCoordinator*))0x60AAA0;
 };
 auto& pRaceCoordinator = *(RaceCoordinator**)0x8900D8;
-
-class Player {
-public:
-	uint8_t _0[0x50];
-	bool bFinishedRacing; // +50
-
-	static inline auto pPlayersByIndex = (Player**)0x8900B4;
-	static inline auto& NumPlayers = *(int*)0x8900BC;
-};
 
 auto& UnlockAllThings = *(bool*)0x838464;
 auto& ForceAllAICarsToBeThisType = *(int*)0x7FAA78;
@@ -75,3 +53,4 @@ auto FEHashUpper = (uint32_t(*)(const char*))0x505450;
 auto FEngHashString = (uint32_t(*)(const char*, ...))0x50B990;
 
 #include "nfsug2hooks.h"
+#include "nfsug2helpers.h"
