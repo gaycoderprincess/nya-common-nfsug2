@@ -13,10 +13,17 @@
 #include "types/Car.h"
 #include "types/SkipFE.h"
 
+class cFrontendDatabase {
+public:
+	static inline auto NotifyExitRaceToFrontend = (void(__thiscall*)(cFrontendDatabase*, bool))0x503040;
+};
+auto& FEDatabase = *(cFrontendDatabase*)0x83A9D0;
+
 class CAnimManager {
 public:
 	static inline auto IsPlayingIntroNIS = (bool(__thiscall*)(CAnimManager*))0x430350;
 	static inline auto IsPlayingEndNIS = (bool(__thiscall*)(CAnimManager*))0x430420;
+	static inline auto EndNIS_SafeRemove = (void(__thiscall*)(CAnimManager*))0x43B640;
 };
 auto& TheAnimManager = *(CAnimManager*)0x827E88;
 

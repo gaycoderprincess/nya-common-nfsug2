@@ -13,6 +13,7 @@ enum GameFlowState {
 
 class GameFlowManager {
 public:
+	uint8_t _0[4];
 	void(*pSingleFunction)(int);
 	int SingleFunctionParam;
 	const char* pSingleFunctionName;
@@ -27,4 +28,4 @@ public:
 	static inline auto LoadTrack = (void(__thiscall*)(GameFlowManager*))0x581020;
 	static inline auto UnloadTrack = (void(__thiscall*)(GameFlowManager*))0x5819C0;
 };
-auto& TheGameFlowManager = *(GameFlowManager*)0x865484;
+auto& TheGameFlowManager = *(GameFlowManager*)0x865480;
