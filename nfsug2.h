@@ -18,6 +18,7 @@
 #include "types/DriftManager.h"
 #include "types/GarageMainScreen.h"
 #include "types/eView.h"
+#include "types/StringRecord.h"
 #include "types/SkipFE.h"
 
 class Race {

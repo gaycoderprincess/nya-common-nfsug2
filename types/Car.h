@@ -69,7 +69,9 @@ public:
 	ControlMode nControlMode; // +2C
 	uint8_t _30[0x4];
 	CarMover* pMover; // +34
-	uint8_t _38[0x93C];
+	uint8_t _38[0x92C];
+	bool bIsTotaled; // +964
+	uint8_t _965[0xF];
 	uint32_t nResetStartTime; // +974
 	float fResetDuration; // +978
 
@@ -90,6 +92,7 @@ public:
 };
 static_assert(offsetof(Car, pDriverInfo) == 0x14);
 static_assert(offsetof(Car, nMovementMode) == 0x28);
+static_assert(offsetof(Car, bIsTotaled) == 0x964);
 static_assert(offsetof(Car, nResetStartTime) == 0x974);
 
 auto& PlayerCarType = *(int*)0x8021B0;
