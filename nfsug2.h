@@ -17,6 +17,7 @@
 #include "types/Player.h"
 #include "types/DriftManager.h"
 #include "types/GarageMainScreen.h"
+#include "types/eView.h"
 #include "types/SkipFE.h"
 
 class Race {
