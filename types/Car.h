@@ -74,6 +74,13 @@ static_assert(offsetof(CarDriver, fThrottle) == 0x20C);
 static_assert(offsetof(CarDriver, fEBrake) == 0x210);
 static_assert(offsetof(CarDriver, fBrake) == 0x214);
 
+class RealDriver : public CarDriver {
+public:
+	uint8_t _220[0xA8];
+	float fPlayerSteering; // +2C8
+};
+static_assert(offsetof(RealDriver, fPlayerSteering) == 0x2C8);
+
 typedef int eGPSState;
 class Car;
 class TrackRoutePoint;
@@ -114,9 +121,9 @@ public:
 
 class CarState {
 public:
-	uint8_t _0[0x420];
-	float fNitrous; // +420
-	uint8_t _424[0x6C];
+	uint8_t _0[0x414];
+	float fNitrous; // +414
+	uint8_t _418[0x78];
 
 	static inline auto IsNitrousAvailable = (bool(__thiscall*)(CarState*))0x59FAA0;
 	static inline auto StartNitrous = (void(__thiscall*)(CarState*))0x59FAF0;
@@ -124,7 +131,7 @@ public:
 	static inline auto IsNitrousOn = (int(__thiscall*)(CarState*))0x59FA30;
 };
 static_assert(sizeof(CarState) == 0x490);
-static_assert(offsetof(CarState, fNitrous) == 0x420);
+static_assert(offsetof(CarState, fNitrous) == 0x414);
 
 class Car : public bNode<Car> {
 public:
