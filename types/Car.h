@@ -58,18 +58,89 @@ public:
 };
 static_assert(offsetof(CarMover, sName) == 0xC);
 
+class CarDriver {
+public:
+	uint8_t _0[0x1E0];
+	int16_t nSteering; // +1E0
+	uint8_t _1E2[0x2A];
+	float fThrottle; // +20C
+	float fEBrake; // +210
+	float fBrake; // +214
+	uint8_t _218[0x8];
+};
+static_assert(sizeof(CarDriver) == 0x220);
+static_assert(offsetof(CarDriver, nSteering) == 0x1E0);
+static_assert(offsetof(CarDriver, fThrottle) == 0x20C);
+static_assert(offsetof(CarDriver, fEBrake) == 0x210);
+static_assert(offsetof(CarDriver, fBrake) == 0x214);
+
+typedef int eGPSState;
+class Car;
+class TrackRoutePoint;
+class Signpost;
+class PathfindingNode;
+class CarController {
+public:
+	Car* pCar; // +4
+	CarDriver* pDriver; // +8
+
+	virtual void _vf0();
+	virtual void DebugDisplay();
+	virtual void DoSnapshot(ReplaySnapshot*);
+	virtual void Think(float);
+	virtual void TopologyLoadedHasChanged(bool);
+	virtual void RaceStageHasChanged(int, int);
+	virtual void SetCurrentRoutePoint(TrackRoutePoint*);
+	virtual int GetCurrentDrivingLineNumber();
+	virtual void SetCurrentDrivingLineNumber(int);
+	virtual void* GetFuturePoints();
+	virtual void KeepFuturePointsBehindMe();
+	virtual float GetAmountOutOfBounds();
+	virtual void FindWhereIAm(bool);
+	virtual void JustReset();
+	virtual void SetToPhysicsMode(Car*, bool);
+	virtual void ForceBoost(float);
+	virtual void ReleaseBoost();
+	virtual bool MustTakeSignpost(Signpost*);
+	virtual bool JustCrossedSignpost(Signpost*);
+	virtual void SetGPSState(eGPSState, PathfindingNode*);
+	virtual bool WantToBeInRealPhysics();
+	virtual bool WantToTakeSignpost(Signpost*);
+	virtual void DealWithTakingFutureSignpost(Signpost*);
+	virtual bool WantToCacheSignpostDecision(Signpost*);
+	virtual float GetLookaheadTime();
+	virtual bool GetSignpostDecisionFromPathfinding(Signpost*, bool);
+};
+
+class CarState {
+public:
+	uint8_t _0[0x420];
+	float fNitrous; // +420
+	uint8_t _424[0x6C];
+
+	static inline auto IsNitrousAvailable = (bool(__thiscall*)(CarState*))0x59FAA0;
+	static inline auto StartNitrous = (void(__thiscall*)(CarState*))0x59FAF0;
+	static inline auto StopNitrous = (void(__thiscall*)(CarState*))0x592500;
+	static inline auto IsNitrousOn = (int(__thiscall*)(CarState*))0x59FA30;
+};
+static_assert(sizeof(CarState) == 0x490);
+static_assert(offsetof(CarState, fNitrous) == 0x420);
+
 class Car : public bNode<Car> {
 public:
 	uint8_t _8[0x4];
 	const char* sCarTypeName; // +C
 	RideInfo* pRideInfo; // +10
 	DriverInfo* pDriverInfo; // +14
-	uint8_t _18[0x10];
+	uint8_t _18[0xC];
+	ControlMode nControlMode; // +24
 	MovementMode nMovementMode; // +28
-	ControlMode nControlMode; // +2C
+	CarController* pController; // +2C
 	uint8_t _30[0x4];
 	CarMover* pMover; // +34
-	uint8_t _38[0x92C];
+	uint8_t _38[0x8];
+	CarState State; // +40
+	uint8_t _4D0[0x494];
 	bool bIsTotaled; // +964
 	uint8_t _965[0xF];
 	uint32_t nResetStartTime; // +974
@@ -92,6 +163,9 @@ public:
 };
 static_assert(offsetof(Car, pDriverInfo) == 0x14);
 static_assert(offsetof(Car, nMovementMode) == 0x28);
+static_assert(offsetof(Car, pController) == 0x2C);
+static_assert(offsetof(Car, pMover) == 0x34);
+static_assert(offsetof(Car, State) == 0x40);
 static_assert(offsetof(Car, bIsTotaled) == 0x964);
 static_assert(offsetof(Car, nResetStartTime) == 0x974);
 
