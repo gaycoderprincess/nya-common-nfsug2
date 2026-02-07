@@ -35,6 +35,11 @@ public:
 };
 auto& pRaceCoordinator = *(RaceCoordinator**)0x8900D8;
 
+class QRTrackSelectScreenManager {
+public:
+	static inline auto& pInstance = *(QRTrackSelectScreenManager**)0x836340;
+};
+
 auto& UnlockAllThings = *(bool*)0x838464;
 auto& ForceAllAICarsToBeThisType = *(int*)0x7FAA78;
 auto& EvaluatingDrivingLines = *(bool*)0x8650B0;
