@@ -9,12 +9,14 @@ public:
 	uint32_t TypeHash; // +D0
 	uint8_t _D4[0x76C];
 	int Type; // +840
-	uint8_t _844[0x4C];
+	uint8_t _844[0x48];
+	int HasSkin; // +88C
 };
 static_assert(sizeof(CarTypeInfo) == 0x890);
 static_assert(offsetof(CarTypeInfo, ManufacturerName) == 0xC0);
 static_assert(offsetof(CarTypeInfo, TypeHash) == 0xD0);
 static_assert(offsetof(CarTypeInfo, Type) == 0x840);
+static_assert(offsetof(CarTypeInfo, HasSkin) == 0x88C);
 
 auto& CarTypeInfoArray = *(CarTypeInfo**)0x8A1CCC;
 
